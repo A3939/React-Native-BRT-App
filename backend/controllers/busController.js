@@ -47,12 +47,12 @@ const getRouteBuses = asyncHandler(async (req, res) => {
   const { start_station, end_station } = req.params;
 
   // const bus = await Bus.findById(req.params.id);
-  // if (!bus) {
-  //   res.status(404);
-  //   throw new Error("Bus not Found");
-  // }
-  // console.log("bus");
-  // res.status(200).json(bus);
+  const bus = await Bus.find({ route: { $all: [start_station, end_station] } });
+  if (!bus) {
+    res.status(404);
+    throw new Error("Bus not Found");
+  }
+  res.status(200).json(bus);
 });
 
 //@desc update  bus

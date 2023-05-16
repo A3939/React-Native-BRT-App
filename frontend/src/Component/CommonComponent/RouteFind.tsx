@@ -1,14 +1,35 @@
+import axios from 'axios';
 import {Formik} from 'formik';
-import React from 'react';
+import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 const RouteFind = () => {
+  const [data, setData] = useState();
+
+  const findRoute = async (values: any) => {
+    console.log('loading');
+    await axios
+      .get(
+        'http://192.168.1.52:5001/api/BRT/' +
+          values.startStation +
+          '/' +
+          values.endStation,
+      )
+      .then(response => {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   return (
     <Formik
       initialValues={{startStation: '', endStation: ''}}
-      onSubmit={values => console.log(values)}>
+      onSubmit={values => findRoute(values)}>
       {({handleChange, handleBlur, handleSubmit, values}) => (
         <View>
           <View style={styles.inputStation}>

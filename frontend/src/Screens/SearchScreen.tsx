@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import SearchHeader from '../Component/SearchComponent/SearchHeader';
+import {StyleSheet, View} from 'react-native';
 import SearchForm from '../Component/SearchComponent/SearchForm';
+import SearchHeader from '../Component/SearchComponent/SearchHeader';
 
 const SearchScreen = () => {
   return (
