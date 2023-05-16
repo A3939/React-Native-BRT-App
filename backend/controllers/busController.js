@@ -40,6 +40,21 @@ const getBus = asyncHandler(async (req, res) => {
   res.status(200).json(bus);
 });
 
+//@desc search route busList
+//@route get /api/BRT/:id:start_station:end_station
+//@access public
+const getRouteBuses = asyncHandler(async (req, res) => {
+  const { start_station, end_station } = req.params;
+
+  // const bus = await Bus.findById(req.params.id);
+  // if (!bus) {
+  //   res.status(404);
+  //   throw new Error("Bus not Found");
+  // }
+  // console.log("bus");
+  // res.status(200).json(bus);
+});
+
 //@desc update  bus
 //@route put /api/BRT/:id
 //@access public
@@ -72,4 +87,11 @@ const deleteBus = asyncHandler(async (req, res) => {
   res.status(200).json(deleteBus);
 });
 
-module.exports = { getBusList, getBus, createBus, deleteBus, updateBus };
+module.exports = {
+  getBusList,
+  getBus,
+  createBus,
+  deleteBus,
+  updateBus,
+  getRouteBuses,
+};
