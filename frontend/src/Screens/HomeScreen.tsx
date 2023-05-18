@@ -1,12 +1,10 @@
 import React from 'react';
-import HomeHeader from '../Component/HomeComponent/HomeHeader';
-import {Button, SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import FrequentlySearch from '../Component/HomeComponent/FrequentlySearch';
+import HomeHeader from '../Component/HomeComponent/HomeHeader';
 import PromotionSection from '../Component/HomeComponent/PromotionSection';
 
-const HomeScreen = (props: {
-  navigation: {navigate: (arg0: string) => void};
-}) => {
+const HomeScreen = () => {
   return (
     <SafeAreaView>
       <ScrollView>
@@ -14,10 +12,6 @@ const HomeScreen = (props: {
           <HomeHeader />
           <FrequentlySearch />
           <PromotionSection />
-          <Button
-            title="Search"
-            onPress={() => props.navigation.navigate('Search')}
-          />
         </View>
       </ScrollView>
     </SafeAreaView>

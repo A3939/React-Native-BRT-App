@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "645b9ae6e5ed4b8465851e65"
+  },
+  "busNo": "1D",
+  "start_station": "Iscon Cross Road",
+  "end_station": "Ranip Cross Road",
+  "route": [
+    "Himatlal",
+    "Shivranjani",
+    "Jhansi"
+  ],
+  "createdAt": {
+    "$date": "2023-05-10T13:23:50.915Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-10T13:23:50.915Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "645b9b01e5ed4b8465851e67"
+  },
+  "busNo": "8D",
+  "start_station": "Naroda Gam",
+  "end_station": "Iskcon Cross Road",
+  "route": [
+    "Himatlal",
+    "Shivranjani",
+    "Jhansi"
+  ],
+  "createdAt": {
+    "$date": "2023-05-10T13:24:17.773Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-10T13:24:39.398Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64636dbfc985efa06d7ac8bd"
+  },
+  "busNo": "8D",
+  "start_station": "Maninagar",
+  "end_station": "Ghuma Gam",
+  "route": [
+    "Maninagar",
+    "Maninagar Char Rasta",
+    "Rambaug",
+    "Kankariya",
+    "Swaminarayan"
+  ],
+  "createdAt": {
+    "$date": "2023-05-16T11:49:19.722Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-16T11:49:19.722Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64636e00c985efa06d7ac8c7"
+  },
+  "busNo": "8D",
+  "start_station": "Maninagar",
+  "end_station": "Ghuma Gam",
+  "route": [
+    "Maninagar",
+    "Maninagar Char Rasta",
+    "Rambaug",
+    "Swaminarayan"
+  ],
+  "createdAt": {
+    "$date": "2023-05-16T11:50:24.108Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-16T11:50:24.108Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6464c5812d7af0b1003f126e"
+  },
+  "busNo": "10D",
+  "start_station": "Aditya",
+  "end_station": "Om",
+  "route": [
+    "React",
+    "Flutter",
+    ".Net",
+    "CE21"
+  ],
+  "createdAt": {
+    "$date": "2023-05-17T12:16:01.515Z"
+  },
+  "updatedAt": {
+    "$date": "2023-05-17T12:16:01.515Z"
+  },
+  "__v": 0
+}]

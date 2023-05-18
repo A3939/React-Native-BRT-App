@@ -3,11 +3,11 @@ import {StyleSheet, View} from 'react-native';
 import SearchForm from '../Component/SearchComponent/SearchForm';
 import SearchHeader from '../Component/SearchComponent/SearchHeader';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <SearchHeader />
-      <SearchForm />
+      <SearchForm navigation={navigation} />
     </View>
   );
 };

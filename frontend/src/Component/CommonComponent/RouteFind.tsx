@@ -4,8 +4,9 @@ import React, {useState} from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {ROUTES} from '../../constants';
 
-const RouteFind = () => {
+const RouteFind = ({navigation}: any) => {
   const [data, setData] = useState();
 
   const findRoute = async (values: any) => {
@@ -19,6 +20,7 @@ const RouteFind = () => {
       )
       .then(response => {
         console.log(response.data);
+
         setData(response.data);
       })
       .catch(error => {
@@ -29,7 +31,12 @@ const RouteFind = () => {
   return (
     <Formik
       initialValues={{startStation: '', endStation: ''}}
-      onSubmit={values => findRoute(values)}>
+      onSubmit={values => {
+        findRoute(values);
+        navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
+          station: values.startStation + ' to ' + values.endStation,
+        });
+      }}>
       {({handleChange, handleBlur, handleSubmit, values}) => (
         <View>
           <View style={styles.inputStation}>

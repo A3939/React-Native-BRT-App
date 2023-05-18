@@ -39,8 +39,8 @@ export default Ticket;
 
 const styles = StyleSheet.create({
   ticketContainer: {
-    width: wp('90%'),
-    height: wp('55%'),
+    width: wp('85%'),
+    height: wp('60%'),
     backgroundColor: '#FFFFFF',
     padding: 20,
     borderRadius: 10,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   },
   busName: {
     width: wp('50%'),
-    fontSize: wp('5%'),
+    fontSize: wp('4.5%'),
     color: '#1C203D',
     fontWeight: '500',
     flexWrap: 'wrap',

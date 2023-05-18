@@ -4,14 +4,14 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import RouteFind from '../CommonComponent/RouteFind';
 import Header from '../CommonComponent/Header';
 
-const SearchForm = () => {
+const SearchForm = ({navigation}: any) => {
   return (
     <View>
       <View style={styles.formHeader}>
         <Text style={styles.formHeading}>BRT Route Check</Text>
       </View>
       <View style={styles.form}>
-        <RouteFind />
+        <RouteFind navigation={navigation} />
       </View>
       <View>
         <Header title="Recent searches" subtitle="" />

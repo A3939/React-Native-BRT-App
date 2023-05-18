@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 const RouteBusList = (values: any) => {
-  console.log(values);
+  // console.log(values);
 
   return (
     <View>
