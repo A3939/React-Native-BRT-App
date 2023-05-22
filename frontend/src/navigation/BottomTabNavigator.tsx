@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../Screens/HomeScreen';
 import {COLOR, ROUTES} from '../constants';
 import SearchNavigator from './SearchNavigator';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
@@ -40,11 +41,12 @@ export default BottomTabNavigator;
 const styles = StyleSheet.create({
   tabBarStyle: {
     position: 'absolute',
-
     borderTopWidth: 0,
-    bottom: 15,
-    right: 10,
-    left: 10,
-    height: 92,
+    bottom: wp('8%'),
+    height: wp('15%'),
+    right: 20,
+    left: 20,
+    alignItems: 'center',
+    borderRadius: 50,
   },
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import RouteFind from '../CommonComponent/RouteFind';
 import Header from '../CommonComponent/Header';
+import RouteFind from '../CommonComponent/RouteFind';
 
 const SearchForm = ({navigation}: any) => {
   return (

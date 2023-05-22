@@ -19,7 +19,7 @@ const Ticket = ({busData}: any) => {
       </View>
       <View>
         <Text style={styles.cutLine}>
-          - - - - - - - - - - - - - - - - - - - - - -
+          - - - - - - - - - - - - - - - - - - - -
         </Text>
       </View>
       <View style={styles.codeView}>
@@ -40,11 +40,12 @@ export default Ticket;
 const styles = StyleSheet.create({
   ticketContainer: {
     width: wp('85%'),
-    height: wp('60%'),
+    height: wp('50%'),
     backgroundColor: '#FFFFFF',
     padding: 20,
     borderRadius: 10,
-    marginRight: 15,
+    // marginRight: 15,
+    margin: 5,
   },
   title: {
     flexDirection: 'row',

@@ -6,7 +6,7 @@ const cors = require("cors");
 
 const corsOption = {
   credentials: true,
-  origin: ["http://localhost:8080"],
+  origin: ["*"],
 };
 connectDb();
 const port = process.env.PORT || 5000;

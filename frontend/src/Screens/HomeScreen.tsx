@@ -3,6 +3,7 @@ import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import FrequentlySearch from '../Component/HomeComponent/FrequentlySearch';
 import HomeHeader from '../Component/HomeComponent/HomeHeader';
 import PromotionSection from '../Component/HomeComponent/PromotionSection';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 const HomeScreen = () => {
   return (
@@ -11,6 +12,8 @@ const HomeScreen = () => {
         <View style={styles.homeContainer}>
           <HomeHeader />
           <FrequentlySearch />
+          <PromotionSection />
+          <PromotionSection />
           <PromotionSection />
         </View>
       </ScrollView>
@@ -24,6 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginStart: 20,
     marginEnd: 20,
+    marginBottom: wp('25%'),
   },
 });
 
