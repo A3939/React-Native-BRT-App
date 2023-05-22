@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Header from '../CommonComponent/Header';
 import RouteFind from '../CommonComponent/RouteFind';
+import SuggestionBox from '../CommonComponent/SuggationBox';
 
 const SearchForm = ({navigation}: any) => {
   return (
@@ -13,6 +14,7 @@ const SearchForm = ({navigation}: any) => {
       <View style={styles.form}>
         <RouteFind navigation={navigation} />
       </View>
+      {/* <SuggestionBox /> */}
       <View>
         <Header title="Recent searches" subtitle="" />
       </View>

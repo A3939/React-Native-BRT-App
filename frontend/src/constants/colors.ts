@@ -3,7 +3,7 @@ export default {
     primary: '#1C203D',
     white: '#FFFFFF',
     dark: '#444',
-    bgColor: '#82ccdd',
+    bgColor: '#FFFFFF',
     warning: '#f0d500',
     danger: '#FF0D0E',
     gray: '#666666',

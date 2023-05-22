@@ -14,7 +14,6 @@ const HomeScreen = () => {
           <FrequentlySearch />
           <PromotionSection />
           <PromotionSection />
-          <PromotionSection />
         </View>
       </ScrollView>
     </SafeAreaView>
