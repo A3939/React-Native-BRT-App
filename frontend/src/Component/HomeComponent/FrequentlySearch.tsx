@@ -15,47 +15,47 @@ type Bus = {
 };
 
 const FrequentlySearch = ({navigation}: any) => {
-  // const [data, setData] = useState<Bus[]>();
+  const [data, setData] = useState<Bus[]>();
 
-  // const getBusList = async () => {
-  //   await axios
-  //     .get('http://192.168.1.52:5001/api/BRT')
-  //     .then(response => {
-  //       setData(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
-  const searchHistory = async () => {
-    let history;
-    try {
-      let getSearchHistory = await AsyncStorage.getItem('searchHistory');
-      if (getSearchHistory !== null) {
-        // We have data!!
-        history = JSON.parse(getSearchHistory);
-        console.log(history);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
+  const getBusList = async () => {
+    await axios
+      .get('http://192.168.1.52:5001/api/BRT')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
+  // const searchHistory = async () => {
+  //   let history;
+  //   try {
+  //     let getSearchHistory = await AsyncStorage.getItem('searchHistory');
+  //     if (getSearchHistory !== null) {
+  //       // We have data!!
+  //       history = JSON.parse(getSearchHistory);
+  //       console.log(history);
+  //     }
+  //   } catch (error) {
+  //     // Error retrieving data
+  //   }
+  // };
+
   useEffect(() => {
-    // getBusList();
-    searchHistory();
+    getBusList();
+    // searchHistory();
   }, []);
 
   return (
     <View>
-      {/* <Header title="Most Search" subTitle="View all" /> */}
-      {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
-      {/* {data?.map((bus): any => (
+      <Header title="Most Search" subTitle="View all" />
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {data?.map((bus): any => (
           <Ticket key={bus._id} busData={bus} />
-        ))} */}
-      <RecentSearches navigation={navigation} />
-      {/* </ScrollView> */}
+        ))}
+        {/* <RecentSearches navigation={navigation} /> */}
+      </ScrollView>
     </View>
   );
 };
