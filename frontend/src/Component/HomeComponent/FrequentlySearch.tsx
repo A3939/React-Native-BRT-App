@@ -14,7 +14,7 @@ type Bus = {
   route: [];
 };
 
-const FrequentlySearch = () => {
+const FrequentlySearch = ({navigation}: any) => {
   // const [data, setData] = useState<Bus[]>();
 
   // const getBusList = async () => {
@@ -49,13 +49,13 @@ const FrequentlySearch = () => {
 
   return (
     <View>
-      <Header title="Most Search" subTitle="View all" />
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {/* {data?.map((bus): any => (
+      {/* <Header title="Most Search" subTitle="View all" /> */}
+      {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}> */}
+      {/* {data?.map((bus): any => (
           <Ticket key={bus._id} busData={bus} />
         ))} */}
-        <RecentSearches />
-      </ScrollView>
+      <RecentSearches navigation={navigation} />
+      {/* </ScrollView> */}
     </View>
   );
 };

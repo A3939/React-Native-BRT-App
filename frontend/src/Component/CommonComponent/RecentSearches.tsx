@@ -7,12 +7,14 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
-import {COLOR} from '../../constants';
+import {COLOR, ROUTES} from '../../constants';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Header from './Header';
+import axios from 'axios';
 
-const RecentSearches = () => {
+const RecentSearches = ({navigation}: any) => {
   const [history, setHistory] = useState([]);
   const searchHistory = async () => {
     try {
@@ -27,37 +29,59 @@ const RecentSearches = () => {
   };
   useEffect(() => {
     searchHistory();
-    console.log(history, 'home his');
   }, []);
+
+  const findRoute = async (startStation: string, endStation: string) => {
+    console.log(startStation, endStation);
+
+    await axios
+      .get(
+        'http://192.168.1.52:5001/api/BRT/' + startStation + '/' + endStation,
+      )
+      .then((response: {data: any}) => {
+        navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
+          station: startStation + ' to ' + endStation,
+          data: response.data,
+        });
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-      {history?.map((data, index): any => (
-        <>
-          <View key={index} style={styles.container}>
-            <View style={styles.content}>
-              <Text style={styles.subTitle}>BRTS</Text>
-              <Text style={styles.route}>
-                {data?.startStation} {'  '}
-                <FontAwesome5Icon
-                  style={styles.exchangeIcon}
-                  name="exchange-alt"
-                  size={22}
-                  color={'#1C203D'}
-                />
-                {'  '}
-                {data?.endStation}
-              </Text>
-              <Text style={styles.tag}>Via BRTS</Text>
+    <>
+      <Header title="Recent Search" />
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {history?.map((data, index): any => (
+          <TouchableOpacity
+            onPress={() => findRoute(data.startStation, data.endStation)}>
+            <View key={index} style={styles.container}>
+              <View style={styles.content}>
+                <Text style={styles.subTitle}>BRTS</Text>
+                <Text style={styles.route}>
+                  {data?.startStation} {'  '}
+                  <FontAwesome5Icon
+                    style={styles.exchangeIcon}
+                    name="exchange-alt"
+                    size={22}
+                    color={'#1C203D'}
+                  />
+                  {'  '}
+                  {data?.endStation}
+                </Text>
+                <Text style={styles.tag}>Via BRTS</Text>
+              </View>
+              <View>
+                <TouchableOpacity style={styles.priceBtn}>
+                  <Text style={styles.price}>$ 15</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View>
-              <TouchableOpacity style={styles.priceBtn}>
-                <Text style={styles.price}>$ 15</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </>
-      ))}
-    </ScrollView>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+    </>
   );
 };
 

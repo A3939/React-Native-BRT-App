@@ -4,6 +4,7 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Header from '../CommonComponent/Header';
 import RouteFind from '../CommonComponent/RouteFind';
 import SuggestionBox from '../CommonComponent/SuggationBox';
+import {COLOR} from '../../constants';
 
 const SearchForm = ({navigation}: any) => {
   return (
@@ -15,9 +16,6 @@ const SearchForm = ({navigation}: any) => {
         <RouteFind navigation={navigation} />
       </View>
       {/* <SuggestionBox /> */}
-      <View>
-        <Header title="Recent searches" subtitle="" />
-      </View>
     </View>
   );
 };
@@ -27,16 +25,16 @@ export default SearchForm;
 const styles = StyleSheet.create({
   formHeader: {
     marginTop: 20,
-    backgroundColor: '#FFFFFF',
     padding: 8,
     borderRadius: 20,
+    backgroundColor: COLOR.primary,
   },
   formHeading: {
     textAlign: 'center',
     fontSize: wp('4%'),
-    color: '#1C203D',
+    color: '#ffffff',
   },
   form: {
-    marginVertical: 15,
+    // marginVertical: 15,
   },
 });

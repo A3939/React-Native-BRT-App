@@ -1,11 +1,11 @@
 // App.js
-import * as yup from 'yup'
+import * as yup from 'yup';
 
 export const SearchValidationSchema = yup.object().shape({
     startStation: yup
     .string()
-    .required('* Kaha se jane he vo to batao'),
+    .required('* Please Enter start point'),
     endStation: yup
     .string()
-    .required('* Kaha jane he vo bhi batao ab'),
+    .required('* Please Enter end point'),
 });

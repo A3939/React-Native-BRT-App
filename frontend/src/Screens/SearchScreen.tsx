@@ -5,16 +5,18 @@ import SearchHeader from '../Component/SearchComponent/SearchHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import RecentSearches from '../Component/CommonComponent/RecentSearches';
+import SuggestionBox from '../Component/CommonComponent/SuggationBox';
 
 const SearchScreen = ({navigation}: any) => {
   return (
     <SafeAreaView>
-      {/* <ScrollView keyboardDismissMode="interactive"> */}
-      <ScrollView>
+      <ScrollView nestedScrollEnabled={true} keyboardDismissMode="interactive">
+        {/* <ScrollView> */}
         <View style={styles.container}>
           <SearchHeader />
+          <RecentSearches navigation={navigation} />
           <SearchForm navigation={navigation} />
-          <RecentSearches />
+          {/* <SuggestionBox /> */}
         </View>
       </ScrollView>
     </SafeAreaView>

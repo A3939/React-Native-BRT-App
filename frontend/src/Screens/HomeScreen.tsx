@@ -5,13 +5,13 @@ import HomeHeader from '../Component/HomeComponent/HomeHeader';
 import PromotionSection from '../Component/HomeComponent/PromotionSection';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.homeContainer}>
           <HomeHeader />
-          <FrequentlySearch />
+          <FrequentlySearch navigation={navigation} />
           <PromotionSection />
           <PromotionSection />
         </View>
