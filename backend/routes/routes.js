@@ -6,6 +6,8 @@ const {
   deleteBus,
   getBus,
   getRouteBuses,
+  getStationList,
+  createStation,
 } = require("../controllers/busController");
 
 const router = express.Router();
@@ -13,6 +15,8 @@ const router = express.Router();
 router.route("/").get(getBusList);
 
 router.route("/").post(createBus);
+
+router.route("/stations").get(getStationList).post(createStation);
 
 router.route("/:id").get(getBus).put(updateBus).delete(deleteBus);
 

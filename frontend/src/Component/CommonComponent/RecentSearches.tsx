@@ -16,10 +16,23 @@ import axios from 'axios';
 
 const RecentSearches = ({navigation}: any) => {
   const [history, setHistory] = useState([]);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      searchHistory();
+    });
+    return unsubscribe;
+  }, []);
+  useEffect(() => {
+    searchHistory();
+  }, []);
+
   const searchHistory = async () => {
     try {
       let getSearchHistory = await AsyncStorage.getItem('searchHistory');
       if (getSearchHistory !== null) {
+        if (JSON.parse(getSearchHistory).length > 10) {
+          await AsyncStorage.clear();
+        }
         // We have data!!
         setHistory(JSON.parse(getSearchHistory));
       }
@@ -27,9 +40,6 @@ const RecentSearches = ({navigation}: any) => {
       // Error retrieving data
     }
   };
-  useEffect(() => {
-    searchHistory();
-  }, []);
 
   const findRoute = async (startStation: string, endStation: string) => {
     console.log(startStation, endStation);
@@ -80,6 +90,9 @@ const RecentSearches = ({navigation}: any) => {
             </View>
           </TouchableOpacity>
         ))}
+        {history.length === 0 && (
+          <Text style={styles.noRecord}>No Recent Search Found...</Text>
+        )}
       </ScrollView>
     </>
   );
@@ -125,5 +138,9 @@ const styles = StyleSheet.create({
   tag: {},
   exchangeIcon: {
     padding: 10,
+  },
+  noRecord: {
+    fontSize: wp('4%'),
+    fontWeight: 'bold',
   },
 });

@@ -106,7 +106,7 @@ const RouteFind = ({navigation}: any) => {
 
   const getBusList = async () => {
     await axios
-      .get('http://192.168.1.52:5001/api/BRT')
+      .get('http://192.168.1.52:5001/api/BRT/stations')
       .then(response => {
         setFilteredData(response.data);
         setMasterData(response.data);
@@ -121,12 +121,13 @@ const RouteFind = ({navigation}: any) => {
       <TouchableOpacity
         onPress={() => {
           if (startStationChange) {
-            setStartStation(item.start_station);
+            setStartStation(item.stationName);
           } else {
-            setEndStation(item.start_station);
+            setEndStation(item.stationName);
           }
+          setFilteredData(masterData);
         }}>
-        <Text style={styles.busStop}>{item.start_station}</Text>
+        <Text style={styles.busStop}>{item.stationName}</Text>
       </TouchableOpacity>
     );
   };
@@ -134,8 +135,8 @@ const RouteFind = ({navigation}: any) => {
   const searchStartStationFilter = (text: any) => {
     if (text) {
       const newData = masterData.filter(item => {
-        const itemData = item.start_station.toLowerCase()
-          ? item.start_station.toLowerCase()
+        const itemData = item.stationName.toLowerCase()
+          ? item.stationName.toLowerCase()
           : '';
         const textData = text.toLowerCase();
         return itemData.indexOf(textData) > -1;
@@ -151,8 +152,8 @@ const RouteFind = ({navigation}: any) => {
   const searchEndStationFilter = (text: any) => {
     if (text) {
       const newData = masterData.filter(item => {
-        const itemData = item.start_station.toLowerCase()
-          ? item.start_station.toLowerCase()
+        const itemData = item.stationName.toLowerCase()
+          ? item.stationName.toLowerCase()
           : '';
         const textData = text.toLowerCase();
         return itemData.indexOf(textData) > -1;

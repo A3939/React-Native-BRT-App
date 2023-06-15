@@ -1,5 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Bus = require("../models/busModel");
+const Station = require("../models/stationModel");
+
 //@desc get all bus
 //@route get /api/BRT
 //@access public
@@ -87,6 +89,29 @@ const deleteBus = asyncHandler(async (req, res) => {
   res.status(200).json(deleteBus);
 });
 
+//@desc get all stations
+//@route get /api/BRT/stations
+//@access public
+const getStationList = asyncHandler(async (req, res) => {
+  const stationList = await Station.find();
+  res.status(200).json(stationList);
+});
+
+//@desc Create new Station
+//@route post /api/BRT
+//@access public
+const createStation = asyncHandler(async (req, res) => {
+  const { stationName } = req.body;
+  if (!stationName) {
+    res.status(400);
+    throw new Error("All Field are required!");
+  }
+  const bus = await Station.create({
+    stationName,
+  });
+  res.status(201).json(bus);
+});
+
 module.exports = {
   getBusList,
   getBus,
@@ -94,4 +119,6 @@ module.exports = {
   deleteBus,
   updateBus,
   getRouteBuses,
+  getStationList,
+  createStation,
 };
