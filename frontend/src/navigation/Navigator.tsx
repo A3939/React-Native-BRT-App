@@ -4,6 +4,7 @@ import React from 'react';
 import SearchScreen from '../Screens/SearchScreen';
 import {ROUTES} from '../constants';
 import BottomTabNavigator from './BottomTabNavigator';
+import BusRouteDetail from '../Screens/BusRouteDetail';
 
 const Stack = createNativeStackNavigator();
 const Navigator = () => {

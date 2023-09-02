@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, View,TouchableOpacity} from 'react-native';
 import Header from '../CommonComponent/Header';
 import Ticket from '../CommonComponent/Ticket';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RecentSearches from '../CommonComponent/RecentSearches';
+import { apiGetBusList } from '../../network/API';
+import { ROUTES } from '../../constants';
 
 type Bus = {
   _id: string;
@@ -18,41 +20,32 @@ const FrequentlySearch = ({navigation}: any) => {
   const [data, setData] = useState<Bus[]>();
 
   const getBusList = async () => {
-    await axios
-      .get('http://192.168.1.52:5001/api/BRT')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const response:any = await apiGetBusList();
+    setData(response)
   };
 
-  // const searchHistory = async () => {
-  //   let history;
-  //   try {
-  //     let getSearchHistory = await AsyncStorage.getItem('searchHistory');
-  //     if (getSearchHistory !== null) {
-  //       // We have data!!
-  //       history = JSON.parse(getSearchHistory);
-  //       console.log(history);
-  //     }
-  //   } catch (error) {
-  //     // Error retrieving data
-  //   }
-  // };
 
   useEffect(() => {
     getBusList();
     // searchHistory();
   }, []);
 
+  const handleTicketView = (bus:any)=>{
+    navigation.navigate(ROUTES.BUS_ROUTE_DETAIL, {
+      data: bus,
+    });
+  }
+
   return (
     <View>
       <Header title="Most Search" subTitle="View all" />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {data?.map((bus): any => (
+           <TouchableOpacity key={bus._id} onPress={()=>{
+            handleTicketView(bus)
+          }}>
           <Ticket key={bus._id} busData={bus} />
+          </TouchableOpacity>
         ))}
         {/* <RecentSearches navigation={navigation} /> */}
       </ScrollView>

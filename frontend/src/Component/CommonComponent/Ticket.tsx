@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   ticketContainer: {
     width: wp('85%'),
     height: wp('50%'),
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#d4d4d4',
     padding: 20,
     borderRadius: 10,
     // marginRight: 15,

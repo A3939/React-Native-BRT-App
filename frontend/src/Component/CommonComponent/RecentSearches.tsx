@@ -13,9 +13,10 @@ import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './Header';
 import axios from 'axios';
+import {apiFindRoute} from '../../network/API';
 
 const RecentSearches = ({navigation}: any) => {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState<any>([]);
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       searchHistory();
@@ -33,37 +34,27 @@ const RecentSearches = ({navigation}: any) => {
         if (JSON.parse(getSearchHistory).length > 10) {
           await AsyncStorage.clear();
         }
-        // We have data!!
         setHistory(JSON.parse(getSearchHistory));
       }
     } catch (error) {
-      // Error retrieving data
+      console.log('error', error);
     }
   };
 
   const findRoute = async (startStation: string, endStation: string) => {
-    console.log(startStation, endStation);
-
-    await axios
-      .get(
-        'http://192.168.1.52:5001/api/BRT/' + startStation + '/' + endStation,
-      )
-      .then((response: {data: any}) => {
-        navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
-          station: startStation + ' to ' + endStation,
-          data: response.data,
-        });
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
+    console.log(startStation, endStation, 'start and end');
+    const response = await apiFindRoute(startStation, endStation);
+    await navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
+      station: startStation + ' to ' + endStation,
+      data: response,
+    });
   };
 
   return (
     <>
       <Header title="Recent Search" />
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {history?.map((data, index): any => (
+        {history?.map((data: any, index: number) => (
           <TouchableOpacity
             onPress={() => findRoute(data.startStation, data.endStation)}>
             <View key={index} style={styles.container}>
@@ -126,6 +117,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: wp('5%'),
     fontWeight: 'bold',
+    color: COLOR.gray
   },
   route: {
     flexWrap: 'wrap',
@@ -135,7 +127,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  tag: {},
+  tag: {
+    color: COLOR.gray
+  },
   exchangeIcon: {
     padding: 10,
   },

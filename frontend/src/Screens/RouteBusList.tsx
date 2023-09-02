@@ -13,9 +13,14 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Ticket from '../Component/CommonComponent/Ticket';
-import {COLOR} from '../constants';
+import {COLOR, ROUTES} from '../constants';
 
 const RouteBusList = ({route, navigation}: any) => {
+  const handleTicketView = (bus:any)=>{
+    navigation.navigate(ROUTES.BUS_ROUTE_DETAIL, {
+      data: bus,
+    });
+  }
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -37,7 +42,11 @@ const RouteBusList = ({route, navigation}: any) => {
         <View style={styles.listView}>
           <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
             {route.params?.data.map((bus: {_id: any}) => (
+              <TouchableOpacity key={bus._id} onPress={()=>{
+                handleTicketView(bus)
+              }}>
               <Ticket key={bus._id} busData={bus} />
+              </TouchableOpacity>
             ))}
           </ScrollView>
         </View>

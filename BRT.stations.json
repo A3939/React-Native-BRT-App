@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "64f2f766596cd74059c7011d"
+  },
+  "stationName": "Shivranjani",
+  "createdAt": {
+    "$date": "2023-09-02T08:50:46.898Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:50:46.898Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f2f76d596cd74059c7011f"
+  },
+  "stationName": "Jhansi",
+  "createdAt": {
+    "$date": "2023-09-02T08:50:53.573Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:50:53.573Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f2f773596cd74059c70121"
+  },
+  "stationName": "Himatlal",
+  "createdAt": {
+    "$date": "2023-09-02T08:50:59.315Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:50:59.315Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f2f77b596cd74059c70123"
+  },
+  "stationName": "Maninagar",
+  "createdAt": {
+    "$date": "2023-09-02T08:51:07.537Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:51:07.537Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f2f781596cd74059c70125"
+  },
+  "stationName": "Rambaug",
+  "createdAt": {
+    "$date": "2023-09-02T08:51:13.103Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:51:13.103Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f2f786596cd74059c70127"
+  },
+  "stationName": "Kankariya",
+  "createdAt": {
+    "$date": "2023-09-02T08:51:18.869Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:51:18.869Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64f2f78b596cd74059c70129"
+  },
+  "stationName": "Swaminarayan",
+  "createdAt": {
+    "$date": "2023-09-02T08:51:23.926Z"
+  },
+  "updatedAt": {
+    "$date": "2023-09-02T08:51:23.926Z"
+  },
+  "__v": 0
+}]

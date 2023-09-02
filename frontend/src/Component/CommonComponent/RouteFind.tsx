@@ -18,28 +18,9 @@ import {COLOR, ROUTES} from '../../constants';
 import {SearchValidationSchema} from '../../validationSchema/SearchSchema';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './Header';
+import {apiFindRoute, apiGetBusStationList} from '../../network/API';
 
 const RouteFind = ({navigation}: any) => {
-  // const [data, setData] = useState();
-
-  // const findRoute = async (values: any) => {
-  //   console.log('loading');
-  //   await axios
-  //     .get(
-  //       'http://192.168.1.52:5001/api/BRT/' +
-  //         values.startStation +
-  //         '/' +
-  //         values.endStation,
-  //     )
-  //     .then(response => {
-  //       console.log(response.data, 're');
-  //       setData(response.data);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     });
-  // };
-
   const [startStation, setStartStation] = useState('');
   const [startStationChange, setStartStationChange] = useState(true);
   const [endStation, setEndStation] = useState('');
@@ -59,9 +40,8 @@ const RouteFind = ({navigation}: any) => {
     let history;
 
     try {
-      const historyData = await AsyncStorage.getItem('searchHistory');
+      const historyData: any = await AsyncStorage.getItem('searchHistory');
       if (history !== null) {
-        // We have data!!
         history = JSON.parse(historyData);
       }
       if (history === null) {
@@ -71,49 +51,28 @@ const RouteFind = ({navigation}: any) => {
         history = [...history, values];
       }
     } catch (error) {
-      // Error retrieving data
+      console.log('error', error);
     }
-
-    console.log(history, 'history');
-
-    // if (history.length > 5) {
-    //   const clearData = await AsyncStorage.removeItem('searchHistory');
-    //   console.log(clearData, 'clear data');
-    // }
 
     try {
       await AsyncStorage.setItem('searchHistory', JSON.stringify(history));
     } catch (error) {
-      // Error saving data
+      console.log('error', error);
     }
   };
 
-  const findRoute = async () => {
-    await axios
-      .get(
-        'http://192.168.1.52:5001/api/BRT/' + startStation + '/' + endStation,
-      )
-      .then(response => {
-        navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
-          station: startStation + ' to ' + endStation,
-          data: response.data,
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const findRoute = async (startStation: string, endStation: string) => {
+    const response = await apiFindRoute(startStation, endStation);
+    await navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
+      station: startStation + ' to ' + endStation,
+      data: response,
+    });
   };
 
   const getBusList = async () => {
-    await axios
-      .get('http://192.168.1.52:5001/api/BRT/stations')
-      .then(response => {
-        setFilteredData(response.data);
-        setMasterData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    const response = await apiGetBusStationList();
+    setFilteredData(response);
+    setMasterData(response);
   };
 
   const ItemView = ({item}: any) => {
@@ -134,7 +93,7 @@ const RouteFind = ({navigation}: any) => {
 
   const searchStartStationFilter = (text: any) => {
     if (text) {
-      const newData = masterData.filter(item => {
+      const newData = masterData.filter((item: any) => {
         const itemData = item.stationName.toLowerCase()
           ? item.stationName.toLowerCase()
           : '';
@@ -151,7 +110,7 @@ const RouteFind = ({navigation}: any) => {
 
   const searchEndStationFilter = (text: any) => {
     if (text) {
-      const newData = masterData.filter(item => {
+      const newData = masterData.filter((item: any) => {
         const itemData = item.stationName.toLowerCase()
           ? item.stationName.toLowerCase()
           : '';
@@ -172,7 +131,7 @@ const RouteFind = ({navigation}: any) => {
         validationSchema={SearchValidationSchema}
         initialValues={{startStation, endStation}}
         onSubmit={async values => {
-          await findRoute();
+          await findRoute(startStation, endStation);
           storeRecentSearch(values);
         }}>
         {({
@@ -199,11 +158,8 @@ const RouteFind = ({navigation}: any) => {
                   console.log(text, 'text');
                   setStartStationChange(true);
                   setFieldValue('startStation', text);
-                  // handleChange('startStation');
                   searchStartStationFilter(text);
-                  // setStartStation(text);
                 }}
-                // onFocus={setStartStationChange(true)}
                 onBlur={handleBlur('startStation')}
                 value={startStation}
                 defaultValue={values.startStation}
@@ -228,9 +184,7 @@ const RouteFind = ({navigation}: any) => {
                   console.log(text, 'text');
                   setStartStationChange(false);
                   setFieldValue('endStation', text);
-                  // handleChange('startStation');
                   searchEndStationFilter(text);
-                  // setEndStation(text);
                 }}
                 onBlur={handleBlur('endStation')}
                 value={endStation}
@@ -242,7 +196,6 @@ const RouteFind = ({navigation}: any) => {
             {errors.endStation && touched.endStation && (
               <Text style={styles.errorText}>{errors.endStation}</Text>
             )}
-            {/* <Button title="Submit" /> */}
             <Pressable style={styles.searchBtn} onPress={handleSubmit}>
               <Text style={styles.btnText}>Find Route</Text>
             </Pressable>
@@ -253,7 +206,6 @@ const RouteFind = ({navigation}: any) => {
       <FlatList
         data={filteredData}
         keyExtractor={(item, index) => index.toString()}
-        // ItemSeparatorComponent={ItemSeparatorView}
         renderItem={ItemView}
       />
     </View>
@@ -284,6 +236,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: wp('4.5%'),
     width: wp('75%'),
+    color: COLOR.black
   },
   searchBtn: {
     backgroundColor: '#1C203D',
