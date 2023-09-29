@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Image, Platform, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../Screens/HomeScreen';
 import {COLOR, ROUTES} from '../constants';
 import SearchNavigator from './SearchNavigator';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {Icons} from '../assets/Icons';
 
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
@@ -22,12 +23,12 @@ const BottomTabNavigator = () => {
           let iconName;
 
           if (route.name === ROUTES.HOME) {
-            iconName = focused ? 'ios-home-sharp' : 'ios-home-outline';
+            iconName = focused ? Icons.HOME : Icons.HOME;
           } else if (route.name === ROUTES.SEARCH_NAVIGATOR) {
-            iconName = focused ? 'search' : 'search-outline';
+            iconName = focused ? Icons.SEARCH : Icons.SEARCH;
           }
 
-          return <Icon name={iconName} size={26} color={color} />;
+          return <Image source={{uri: iconName}} style={styles.bottomIcon} />;
         },
       })}>
       <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
@@ -48,5 +49,10 @@ const styles = StyleSheet.create({
     left: 20,
     alignItems: 'center',
     borderRadius: 50,
+  },
+  bottomIcon: {
+    width: wp('6%'),
+    height: wp('6%'),
+    marginTop: Platform.OS === 'ios' ? wp('7%') : wp('0%'),
   },
 });

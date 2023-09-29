@@ -6,16 +6,19 @@ import RouteFind from '../CommonComponent/RouteFind';
 import SuggestionBox from '../CommonComponent/SuggationBox';
 import {COLOR} from '../../constants';
 
-const SearchForm = ({navigation}: any) => {
+const SearchForm = ({navigation, isLoader, setIsLoader}: any) => {
   return (
     <View>
       <View style={styles.formHeader}>
         <Text style={styles.formHeading}>BRT Route Check</Text>
       </View>
       <View style={styles.form}>
-        <RouteFind navigation={navigation} />
+        <RouteFind
+          navigation={navigation}
+          setIsLoader={setIsLoader}
+          isLoader={isLoader}
+        />
       </View>
-      {/* <SuggestionBox /> */}
     </View>
   );
 };

@@ -1,21 +1,29 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import FrequentlySearch from '../Component/HomeComponent/FrequentlySearch';
 import HomeHeader from '../Component/HomeComponent/HomeHeader';
 import PromotionSection from '../Component/HomeComponent/PromotionSection';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import Loader from '../Component/CommonComponent/Loader';
 
 const HomeScreen = ({navigation}: any) => {
+  const [isLoader, setIsLoader] = useState(false);
+
   return (
     <SafeAreaView>
       <ScrollView>
         <View style={styles.homeContainer}>
           <HomeHeader />
-          <FrequentlySearch navigation={navigation} />
+          <FrequentlySearch
+            navigation={navigation}
+            setIsLoader={setIsLoader}
+            isLoader={isLoader}
+          />
           <PromotionSection />
           <PromotionSection />
         </View>
       </ScrollView>
+      <Loader visible={isLoader} />
     </SafeAreaView>
   );
 };

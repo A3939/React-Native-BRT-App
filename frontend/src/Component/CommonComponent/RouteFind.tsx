@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
-import axios from 'axios';
 import {Formik} from 'formik';
 import React, {useState, useEffect} from 'react';
 import {
@@ -11,16 +10,17 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {COLOR, ROUTES} from '../../constants';
 import {SearchValidationSchema} from '../../validationSchema/SearchSchema';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './Header';
 import {apiFindRoute, apiGetBusStationList} from '../../network/API';
+import {Icons} from '../../assets/Icons';
 
-const RouteFind = ({navigation}: any) => {
+const RouteFind = ({navigation, isLoader, setIsLoader}: any) => {
   const [startStation, setStartStation] = useState('');
   const [startStationChange, setStartStationChange] = useState(true);
   const [endStation, setEndStation] = useState('');
@@ -62,31 +62,35 @@ const RouteFind = ({navigation}: any) => {
   };
 
   const findRoute = async (startStation: string, endStation: string) => {
+    setIsLoader(true);
     const response = await apiFindRoute(startStation, endStation);
     await navigation.navigate(ROUTES.ROUTE_BUS_LIST, {
       station: startStation + ' to ' + endStation,
       data: response,
     });
+    setIsLoader(false);
   };
 
   const getBusList = async () => {
+    setIsLoader(true);
     const response = await apiGetBusStationList();
     setFilteredData(response);
     setMasterData(response);
+    setIsLoader(false);
   };
 
-  const ItemView = ({item}: any) => {
+  const ItemView = ({title}: any) => {
     return (
       <TouchableOpacity
         onPress={() => {
           if (startStationChange) {
-            setStartStation(item.stationName);
+            setStartStation(title.stationName);
           } else {
-            setEndStation(item.stationName);
+            setEndStation(title.stationName);
           }
           setFilteredData(masterData);
         }}>
-        <Text style={styles.busStop}>{item.stationName}</Text>
+        <Text style={styles.busStop}>{title.stationName}</Text>
       </TouchableOpacity>
     );
   };
@@ -145,14 +149,8 @@ const RouteFind = ({navigation}: any) => {
         }) => (
           <View>
             <View style={styles.inputStation}>
-              <FontAwesome5Icon
-                style={styles.searchIcon}
-                name="bus"
-                size={22}
-                color={'#1C203D'}
-              />
+              <Image source={{uri: Icons.BUS}} style={styles.searchIcon} />
               <TextInput
-                name="startStation"
                 style={styles.inputFiled}
                 onChangeText={(text: any) => {
                   console.log(text, 'text');
@@ -171,14 +169,8 @@ const RouteFind = ({navigation}: any) => {
               <Text style={styles.errorText}>{errors.startStation}</Text>
             )}
             <View style={styles.inputStation}>
-              <FontAwesome5Icon
-                style={styles.searchIcon}
-                name="bus"
-                size={22}
-                color={'#1C203D'}
-              />
+              <Image source={{uri: Icons.BUS}} style={styles.searchIcon} />
               <TextInput
-                name="endStation"
                 style={styles.inputFiled}
                 onChangeText={(text: any) => {
                   console.log(text, 'text');
@@ -196,7 +188,7 @@ const RouteFind = ({navigation}: any) => {
             {errors.endStation && touched.endStation && (
               <Text style={styles.errorText}>{errors.endStation}</Text>
             )}
-            <Pressable style={styles.searchBtn} onPress={handleSubmit}>
+            <Pressable style={styles.searchBtn} onPress={() => handleSubmit()}>
               <Text style={styles.btnText}>Find Route</Text>
             </Pressable>
           </View>
@@ -206,7 +198,7 @@ const RouteFind = ({navigation}: any) => {
       <FlatList
         data={filteredData}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={ItemView}
+        renderItem={({item, index}) => <ItemView title={item} key={index} />}
       />
     </View>
   );
@@ -231,12 +223,15 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     marginLeft: 15,
+    width: wp('5%'),
+    height: wp('5%'),
   },
   inputFiled: {
     marginLeft: 10,
     fontSize: wp('4.5%'),
     width: wp('75%'),
-    color: COLOR.black
+    height: wp('12%'),
+    color: COLOR.black,
   },
   searchBtn: {
     backgroundColor: '#1C203D',

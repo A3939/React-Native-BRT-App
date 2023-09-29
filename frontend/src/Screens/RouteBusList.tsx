@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -14,44 +16,40 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import Ticket from '../Component/CommonComponent/Ticket';
 import {COLOR, ROUTES} from '../constants';
+import {Icons} from '../assets/Icons';
 
 const RouteBusList = ({route, navigation}: any) => {
-  const handleTicketView = (bus:any)=>{
+  const handleTicketView = (bus: any) => {
     navigation.navigate(ROUTES.BUS_ROUTE_DETAIL, {
       data: bus,
     });
-  }
+  };
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.goBack();
-            }}>
-            <FontAwesome5Icon
-              style={styles.backBtn}
-              name="arrow-left"
-              size={22}
-              color={'#FFFFFF'}
-            />
-          </TouchableOpacity>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Image source={{uri: Icons.LEFT_ARROW}} style={styles.backBtn} />
+        </TouchableOpacity>
 
-          <Text style={styles.headerTitle}>{route.params.station}</Text>
-        </View>
-        <View style={styles.listView}>
-          <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
-            {route.params?.data.map((bus: {_id: any}) => (
-              <TouchableOpacity key={bus._id} onPress={()=>{
-                handleTicketView(bus)
+        <Text style={styles.headerTitle}>{route.params.station}</Text>
+      </View>
+      <View style={styles.listView}>
+        <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+          {route.params?.data.map((bus: {_id: any}) => (
+            <TouchableOpacity
+              key={bus._id}
+              onPress={() => {
+                handleTicketView(bus);
               }}>
               <Ticket key={bus._id} busData={bus} />
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -68,11 +66,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: COLOR.primary,
-    height: wp('30%'),
+    height: wp('40%'),
+    paddingTop: Platform.OS === 'ios' ? wp('5%') : 0,
   },
   backBtn: {
-    color: '#FFFFFF',
     marginLeft: 20,
+    width: wp('5%'),
+    height: wp('5%'),
+    tintColor: COLOR.white,
   },
   headerTitle: {
     textAlign: 'center',

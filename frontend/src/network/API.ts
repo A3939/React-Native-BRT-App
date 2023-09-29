@@ -8,7 +8,7 @@
 // });
 
 import axios from 'axios';
-const baseURL = 'http://192.168.207.223:5001/api/BRT/';
+const baseURL = 'https://brts.onrender.com/api/BRT/';
 
 export const apiGetBusList = async () => {
   try {
@@ -20,25 +20,25 @@ export const apiGetBusList = async () => {
   }
 };
 
-export const apiFindRoute = async (startStation: string, endStation: string) => {
-    try {
-        const response = await axios.get(baseURL + startStation + '/' + endStation);
-        return response.data;
-    } catch (error) {
-        console.log('error', error);
+export const apiFindRoute = async (
+  startStation: string,
+  endStation: string,
+) => {
+  try {
+    const response = await axios.get(baseURL + startStation + '/' + endStation);
+    return response.data;
+  } catch (error) {
+    console.log('error', error);
     return null;
-    }
-
+  }
 };
 
 export const apiGetBusStationList = async () => {
-    try {
-        const response = await axios
-        .get(`${baseURL}stations`)
-        return response.data 
-    } catch (error) {
-        console.log('error', error);
-        return null;
-    }
-  
-  };
+  try {
+    const response = await axios.get(`${baseURL}stations`);
+    return response.data;
+  } catch (error) {
+    console.log('error', error);
+    return null;
+  }
+};

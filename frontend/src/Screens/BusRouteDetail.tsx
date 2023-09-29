@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {COLOR} from '../constants';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {Icons} from '../assets/Icons';
 
 const BusRouteDetail = ({route, navigation}: any) => {
   const [busDetail, setBusDetail] = useState<any>(route.params.data);
@@ -22,12 +23,7 @@ const BusRouteDetail = ({route, navigation}: any) => {
         )}
         <View style={styles.station}>
           <View style={styles.roundView}>
-            <FontAwesome5Icon
-              style={styles.busIcon}
-              name="bus"
-              size={24}
-              color={'#1C203D'}
-            />
+            <Image source={{uri: Icons.BUS}} style={styles.busIcon} />
           </View>
           <Text style={styles.stationNameText}>{stationName}</Text>
         </View>
@@ -42,30 +38,29 @@ const BusRouteDetail = ({route, navigation}: any) => {
           onPress={() => {
             navigation.goBack();
           }}>
-          <FontAwesome5Icon
-            style={styles.backBtn}
-            name="arrow-left"
-            size={22}
-            color={'#FFFFFF'}
-          />
+          <Image source={{uri: Icons.LEFT_ARROW}} style={styles.backBtn} />
         </TouchableOpacity>
         <Image source={{uri: 'map'}} style={styles.mapBg} />
       </View>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{backgroundColor: COLOR.white}}>
         <View style={styles.mainContainer}>
           <View style={styles.busDetail}>
-            <View >
+            <View>
               <Text style={styles.busNumber}>{busDetail.busNo}</Text>
-              <Text style={styles.routeName}>{busDetail.start_station} - {busDetail.end_station}</Text>
+              <Text style={styles.routeName}>
+                {busDetail.start_station} - {busDetail.end_station}
+              </Text>
             </View>
-            <View >
+            <View>
               <Text style={styles.price}>$15</Text>
             </View>
           </View>
           <View style={styles.busTime}>
             <View style={styles.busArrive}>
               <Text style={styles.bustArriveTime}>01:45 PM</Text>
-              <Text style={styles.busStation} numberOfLines={1}>{busDetail.start_station}</Text>
+              <Text style={styles.busStation} numberOfLines={1}>
+                {busDetail.start_station}
+              </Text>
             </View>
             <View style={styles.timeContainer}>
               <View style={styles.line}></View>
@@ -76,7 +71,9 @@ const BusRouteDetail = ({route, navigation}: any) => {
             </View>
             <View style={styles.busReach}>
               <Text style={styles.bustReachTime}>01:45 PM</Text>
-              <Text style={styles.busStation} numberOfLines={1}>{busDetail.end_station}</Text>
+              <Text style={styles.busStation} numberOfLines={1}>
+                {busDetail.end_station}
+              </Text>
             </View>
           </View>
           <View style={styles.stationsContainer}>
@@ -106,6 +103,8 @@ const styles = StyleSheet.create({
   backBtn: {
     color: COLOR.primary,
     marginLeft: 20,
+    width: wp('5%'),
+    height: wp('5%'),
   },
   backBtnContainer: {
     position: 'absolute',
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     justifyContent: 'center',
     padding: wp('5%'),
-    marginBottom: wp('30%')
+    marginBottom: wp('30%'),
   },
   busNumber: {
     fontSize: wp('7%'),
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
     fontSize: wp('5.5%'),
     fontWeight: '600',
     color: COLOR.primary,
-    width:wp('70%'),
+    width: wp('70%'),
   },
   busDetail: {
     flexDirection: 'row',
@@ -164,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: wp('3.5%'),
     fontWeight: '400',
     color: COLOR.gray,
-    width: wp('28%')
+    width: wp('28%'),
   },
   time: {
     fontSize: wp('3%'),
@@ -219,7 +218,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   busIcon: {
-    color: COLOR.white,
+    width: wp('5%'),
+    height: wp('5%'),
+    tintColor: COLOR.white,
   },
   stationNameText: {
     fontSize: wp('5%'),

@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {COLOR, ROUTES} from '../../constants';
@@ -14,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Header from './Header';
 import axios from 'axios';
 import {apiFindRoute} from '../../network/API';
+import {Icons} from '../../assets/Icons';
 
 const RecentSearches = ({navigation}: any) => {
   const [history, setHistory] = useState<any>([]);
@@ -62,11 +64,9 @@ const RecentSearches = ({navigation}: any) => {
                 <Text style={styles.subTitle}>BRTS</Text>
                 <Text style={styles.route}>
                   {data?.startStation} {'  '}
-                  <FontAwesome5Icon
+                  <Image
+                    source={{uri: Icons.EXCHANGE_ARROW}}
                     style={styles.exchangeIcon}
-                    name="exchange-alt"
-                    size={22}
-                    color={'#1C203D'}
                   />
                   {'  '}
                   {data?.endStation}
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   content: {
-    flexWrap: 'wrap',
+    // flexWrap: 'wrap',
   },
   priceBtn: {
     backgroundColor: COLOR.primary,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: wp('5%'),
     fontWeight: 'bold',
-    color: COLOR.gray
+    color: COLOR.gray,
   },
   route: {
     flexWrap: 'wrap',
@@ -128,10 +128,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   tag: {
-    color: COLOR.gray
+    color: COLOR.gray,
   },
   exchangeIcon: {
     padding: 10,
+    width: wp('5%'),
+    height: wp('5%'),
   },
   noRecord: {
     fontSize: wp('4%'),

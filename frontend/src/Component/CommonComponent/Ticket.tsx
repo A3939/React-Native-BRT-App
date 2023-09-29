@@ -1,7 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {Icons} from '../../assets/Icons';
+import {COLOR} from '../../constants';
 
 const Ticket = ({busData}: any) => {
   return (
@@ -17,16 +19,14 @@ const Ticket = ({busData}: any) => {
           <Text style={styles.ticketPrice}>$ 15</Text>
         </View>
       </View>
-      <View>
-        <Text style={styles.cutLine}>
-          - - - - - - - - - - - - - - - - - - - -
-        </Text>
+      <View style={{alignItems: 'center'}}>
+        <Text style={styles.cutLine}>- - - - - - - - - - - - - - - - - -</Text>
       </View>
       <View style={styles.codeView}>
         <Text style={styles.busCode}>NRG</Text>
         <View style={styles.busLineIcon}>
           <Text style={styles.busLine}>o----</Text>
-          <FontAwesome5 name="bus" size={22} color={'#1C203D'} />
+          <Image source={{uri: Icons.BUS}} style={styles.busIcon} />
           <Text style={styles.busLine}>----o</Text>
         </View>
         <Text style={styles.busCode}>ICR</Text>
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
   ticketContainer: {
     width: wp('85%'),
     height: wp('50%'),
-    backgroundColor: '#d4d4d4',
     padding: 20,
     borderRadius: 10,
-    // marginRight: 15,
     margin: 5,
+    borderWidth: 2,
+    borderColor: COLOR.primary,
   },
   title: {
     flexDirection: 'row',
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cutLine: {
-    fontSize: wp('7%'),
+    fontSize: Platform.OS === 'ios' ? wp('6%') : wp('7%'),
     color: '#1C203D',
   },
   codeView: {
@@ -91,5 +91,9 @@ const styles = StyleSheet.create({
     fontSize: wp('5%'),
     fontWeight: 'bold',
     color: '#1C203D',
+  },
+  busIcon: {
+    width: wp('5%'),
+    height: wp('5%'),
   },
 });
