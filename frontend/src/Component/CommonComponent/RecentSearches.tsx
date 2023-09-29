@@ -138,5 +138,6 @@ const styles = StyleSheet.create({
   noRecord: {
     fontSize: wp('4%'),
     fontWeight: 'bold',
+    color: COLOR.black,
   },
 });
