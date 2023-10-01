@@ -1,14 +1,6 @@
-// const axios = require('axios');
-// const api = axios.create({
-//   baseURL: 'http://192.168.139.223:5001/api/BRT',
-//   timeout: 1000,
-//   headers: {
-//     'Accept': 'application/json',
-//   }
-// });
-
 import axios from 'axios';
 const baseURL = 'https://brts.onrender.com/api/BRT/';
+const adBaseURL = 'https://brts.onrender.com/api/';
 
 export const apiGetBusList = async () => {
   try {
@@ -41,4 +33,14 @@ export const apiGetBusStationList = async () => {
     console.log('error', error);
     return null;
   }
+};
+
+export const apiGetAdvertisements = async () => {
+    try {
+      const response = await axios.get(adBaseURL + 'advertisements');
+      return response.data;
+    } catch (error) {
+      console.log('error', error);
+      return null;
+    }
 };

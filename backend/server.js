@@ -14,6 +14,7 @@ const app = express();
 app.use(cors(corsOption));
 app.use(express.json());
 app.use("/api/BRT", require("./routes/routes"));
+app.use("/api/", require("./routes/advertisementRoute"));
 app.use(errorHandler);
 app.listen(port, () => {
   console.log("listing",port);

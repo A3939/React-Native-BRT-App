@@ -20,7 +20,7 @@ import Header from './Header';
 import {apiFindRoute, apiGetBusStationList} from '../../network/API';
 import {Icons} from '../../assets/Icons';
 
-const RouteFind = ({navigation, isLoader, setIsLoader}: any) => {
+const RouteFind = ({navigation, setIsLoader}: any) => {
   const [startStation, setStartStation] = useState('');
   const [startStationChange, setStartStationChange] = useState(true);
   const [endStation, setEndStation] = useState('');
@@ -68,7 +68,9 @@ const RouteFind = ({navigation, isLoader, setIsLoader}: any) => {
       station: startStation + ' to ' + endStation,
       data: response,
     });
-    setIsLoader(false);
+    setTimeout(() => {
+      setIsLoader(false);
+    }, 2000);
   };
 
   const getBusList = async () => {
@@ -196,6 +198,7 @@ const RouteFind = ({navigation, isLoader, setIsLoader}: any) => {
       </Formik>
       <Header title="Stops" />
       <FlatList
+        keyboardShouldPersistTaps="always"
         data={filteredData}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item, index}) => <ItemView title={item} key={index} />}

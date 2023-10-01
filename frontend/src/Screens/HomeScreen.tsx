@@ -19,8 +19,8 @@ const HomeScreen = ({navigation}: any) => {
             setIsLoader={setIsLoader}
             isLoader={isLoader}
           />
-          <PromotionSection />
-          <PromotionSection />
+          <PromotionSection navigation={navigation} />
+          <PromotionSection navigation={navigation} />
         </View>
       </ScrollView>
       <Loader visible={isLoader} />

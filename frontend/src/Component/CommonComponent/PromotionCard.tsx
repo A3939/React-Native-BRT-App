@@ -1,14 +1,19 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, Pressable, StyleSheet} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-const promoImg = require('../../assets/images/promotions_1.png');
-
-const PromotionCard = () => {
+const PromotionCard = ({item, openLink}) => {
   return (
-    <View style={styles.promoContainer}>
-      <Image style={styles.promoImg} source={promoImg} />
-    </View>
+    <Pressable
+      style={styles.promoContainer}
+      onPress={() => openLink(item.advertisementLink)}>
+      <Image
+        style={styles.promoImg}
+        source={{
+          uri: item.advertisementImage,
+        }}
+      />
+    </Pressable>
   );
 };
 
@@ -16,9 +21,10 @@ export default PromotionCard;
 
 const styles = StyleSheet.create({
   promoContainer: {
-    width: wp('90%'),
+    width: wp('85%'),
     height: wp('50%'),
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'transparent',
+    marginHorizontal: wp('1%'),
   },
   promoImg: {
     flex: 1,

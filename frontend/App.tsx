@@ -1,27 +1,12 @@
 import React from 'react';
-// import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
-// import HomeScreen from './src/Screens/HomeScreen';
-// import SearchScreen from './src/Screens/SearchScreen';
-
-//screen
 import {NavigationContainer} from '@react-navigation/native';
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import Navigator from './src/navigation/Navigator';
-import BottomTabNavigator from './src/navigation/BottomTabNavigator';
+import Navigator from './src/navigation/Navigator';
 
-// const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <Navigator /> */}
-      <BottomTabNavigator />
-      {/* <Stack.Navigator
-        screenOptions={{headerShown: false}}
-        initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Search" component={SearchScreen} />
-      </Stack.Navigator> */}
+      <Navigator />
     </NavigationContainer>
   );
 };

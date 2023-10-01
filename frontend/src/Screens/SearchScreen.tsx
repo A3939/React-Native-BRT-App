@@ -5,15 +5,15 @@ import SearchHeader from '../Component/SearchComponent/SearchHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import RecentSearches from '../Component/CommonComponent/RecentSearches';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Loader from '../Component/CommonComponent/Loader';
+import BusLoaderModal from '../Component/CommonComponent/BusLoaderModal';
 
 const SearchScreen = ({navigation}: any) => {
   const [isLoader, setIsLoader] = useState(false);
   return (
     <SafeAreaView>
       <ScrollView
-        keyboardShouldPersistTaps={'handled'}
+        keyboardShouldPersistTaps={'always'}
         showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <SearchHeader />
@@ -25,7 +25,8 @@ const SearchScreen = ({navigation}: any) => {
           />
         </View>
       </ScrollView>
-      <Loader visible={isLoader} />
+      {/* <Loader visible={isLoader} /> */}
+      <BusLoaderModal isLoader={isLoader} />
     </SafeAreaView>
   );
 };
