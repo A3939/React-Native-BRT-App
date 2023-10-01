@@ -1,27 +1,37 @@
 import React from 'react';
 import {StyleSheet, Dimensions, Animated} from 'react-native';
-import {SkypeIndicator} from 'react-native-indicators';
-import {COLOR} from '../../constants';
+import LottieView from 'lottie-react-native';
+import { COLOR } from '../../constants';
 
 // Utility
 const {width, height} = Dimensions.get('window');
 
 const Loader = (props: any) => {
   return props.visible ? (
-    <Animated.View style={style.container}>
-      <SkypeIndicator size={50} color={COLOR.white} />
+    <Animated.View style={styles.container}>
+      <LottieView
+        style={styles.animationStyle}
+        source={require('../../assets/animations/loader.json')}
+        autoPlay
+        loop
+      />
     </Animated.View>
   ) : null;
 };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     width: width,
     height: height,
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: COLOR.white,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  animationStyle: {
+    width: '20%',
+    height: '50%',
+    // backgroundColor: COLOR.white,
   },
 });
 

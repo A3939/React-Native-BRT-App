@@ -1,6 +1,8 @@
 import React from 'react';
-import {Image, Pressable, StyleSheet} from 'react-native';
+import {Image, Pressable, StyleSheet, Text} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import { COLOR } from '../../constants';
+import { Icons } from '../../assets/Icons';
 
 const PromotionCard = ({item, openLink}) => {
   return (
@@ -12,6 +14,7 @@ const PromotionCard = ({item, openLink}) => {
         source={{
           uri: item.advertisementImage,
         }}
+        defaultSource={{uri: Icons.IMG_LOAD}}
       />
     </Pressable>
   );
@@ -31,5 +34,7 @@ const styles = StyleSheet.create({
     width: undefined,
     height: undefined,
     borderRadius: 10,
+    // backgroundColor: COLOR.primary,
   },
+  
 });
