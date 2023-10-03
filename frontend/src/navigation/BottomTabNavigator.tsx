@@ -19,7 +19,8 @@ const BottomTabNavigator = () => {
         tabBarInactiveTintColor: COLOR.dark,
         tabBarStyle: styles.tabBarStyle,
         tabBarActiveTintColor: COLOR.primary,
-      })}>
+      })}
+      initialRouteName={ROUTES.HOME}>
       <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
       <Tab.Screen name={ROUTES.SEARCH_NAVIGATOR} component={SearchNavigator} />
     </Tab.Navigator>

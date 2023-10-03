@@ -9,6 +9,7 @@ import {
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {COLOR, ROUTES} from '../../constants';
 import {Icons} from '../../assets/Icons';
+import React from 'react';
 
 function BottomTabBar({state, descriptors, navigation}) {
   return (
@@ -61,9 +62,6 @@ function BottomTabBar({state, descriptors, navigation}) {
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.tabBarStyle}>
-            {/* <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
-              {label}
-            </Text> */}
             <View
               style={[
                 styles.menuItem,
@@ -93,20 +91,22 @@ const styles = StyleSheet.create({
     // borderRadius: 50,
     justifyContent: 'space-evenly',
     flexDirection: 'row',
-    height: wp('18%'),
+    height: Platform.OS === 'ios' ? wp('23%') : wp('18%'),
     backgroundColor: COLOR.white,
     // marginHorizontal: wp('4%'),
     borderTopLeftRadius: wp('10%'),
     borderTopRightRadius: wp('10%'),
+    // marginBottom: Platform.OS === 'ios' ? wp('3%') : 0,
   },
   bottomIcon: {
     width: wp('6%'),
     height: wp('6%'),
     marginTop: Platform.OS === 'ios' ? wp('7%') : wp('0%'),
+    bottom: Platform.OS === 'ios' ? wp('4%') : 0,
   },
   menuItem: {
-    paddingVertical: wp('3%'),
-    paddingHorizontal: wp('15%'),
+    paddingVertical: Platform.OS === 'ios' ? wp('0%') : wp('3%'),
+    paddingHorizontal: Platform.OS === 'ios' ? wp('15%') : wp('18%'),
     backgroundColor: COLOR.primary,
     borderRadius: wp('10%'),
   },

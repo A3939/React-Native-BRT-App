@@ -1,7 +1,11 @@
 import React from 'react';
 import {StyleSheet, Dimensions, Animated} from 'react-native';
 import LottieView from 'lottie-react-native';
-import { COLOR } from '../../constants';
+import {COLOR} from '../../constants';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 // Utility
 const {width, height} = Dimensions.get('window');
@@ -29,9 +33,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   animationStyle: {
-    width: '20%',
-    height: '50%',
-    // backgroundColor: COLOR.white,
+    width: wp('10%'),
+    height: hp('10%'),
+    backgroundColor: COLOR.bgColor,
   },
 });
 

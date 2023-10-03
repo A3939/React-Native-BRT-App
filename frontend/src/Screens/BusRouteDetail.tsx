@@ -42,7 +42,9 @@ const BusRouteDetail = ({route, navigation}: any) => {
         </TouchableOpacity>
         <Image source={{uri: 'map'}} style={styles.mapBg} />
       </View>
-      <ScrollView contentContainerStyle={{backgroundColor: COLOR.white}}>
+      <ScrollView
+        contentContainerStyle={{backgroundColor: COLOR.white}}
+        showsVerticalScrollIndicator={false}>
         <View style={styles.mainContainer}>
           <View style={styles.busDetail}>
             <View>

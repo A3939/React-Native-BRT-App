@@ -11,7 +11,7 @@ const HomeScreen = ({navigation}: any) => {
 
   return (
     <SafeAreaView>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.homeContainer}>
           <HomeHeader />
           <FrequentlySearch

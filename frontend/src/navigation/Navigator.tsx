@@ -14,7 +14,6 @@ const Navigator = () => {
       initialRouteName={ROUTES.SPLASH}
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={ROUTES.SPLASH} component={SplashScreen} />
-      <Stack.Screen name={ROUTES.SEARCH} component={SearchScreen} />
       <Stack.Screen name={ROUTES.BOTTOM_HOME} component={BottomTabNavigator} />
       <Stack.Screen name={ROUTES.WEB_VIEW} component={WebViewScreen} />
     </Stack.Navigator>

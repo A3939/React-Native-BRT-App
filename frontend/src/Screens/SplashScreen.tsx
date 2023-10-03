@@ -3,27 +3,26 @@ import {StyleSheet, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useNetInfo} from '@react-native-community/netinfo';
 import LottieView from 'lottie-react-native';
-
 import {COLOR, ROUTES} from '../constants';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import {resetNav} from '../Helper/NavReset';
 
 const SplashScreen = ({navigation}) => {
   const netInfo = useNetInfo();
+
   useEffect(() => {
-    checkInternet();
-  }, [netInfo]);
-  const checkInternet = ()=>{
-     setTimeout(() => {
-       if (netInfo.isConnected) {
-         navigation.replace(ROUTES.BOTTOM_HOME);
-       }
-     }, 3000);
-  };
+    if (netInfo.isConnected) {
+      setTimeout(() => {
+        resetNav(navigation, ROUTES.BOTTOM_HOME);
+      }, 3000);
+    }
+  }, [netInfo.isConnected]);
+
   return (
-    <View>
+    <View style={styles.container}>
       <LottieView
         style={styles.animationStyle}
         source={require('../assets/animations/bus_running.json')}
@@ -38,8 +37,8 @@ export default SplashScreen;
 
 const styles = StyleSheet.create({
   animationStyle: {
-    width: '100%',
-    height: '100%',
+    width: wp('40%'),
+    height: hp('40%'),
   },
   loadText: {
     color: COLOR.black,
@@ -51,5 +50,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: wp('50%'),
     textAlign: 'center',
+  },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: wp('50%'),
   },
 });

@@ -155,7 +155,6 @@ const RouteFind = ({navigation, setIsLoader}: any) => {
               <TextInput
                 style={styles.inputFiled}
                 onChangeText={(text: any) => {
-                  console.log(text, 'text');
                   setStartStationChange(true);
                   setFieldValue('startStation', text);
                   searchStartStationFilter(text);
@@ -175,7 +174,6 @@ const RouteFind = ({navigation, setIsLoader}: any) => {
               <TextInput
                 style={styles.inputFiled}
                 onChangeText={(text: any) => {
-                  console.log(text, 'text');
                   setStartStationChange(false);
                   setFieldValue('endStation', text);
                   searchEndStationFilter(text);
@@ -190,7 +188,11 @@ const RouteFind = ({navigation, setIsLoader}: any) => {
             {errors.endStation && touched.endStation && (
               <Text style={styles.errorText}>{errors.endStation}</Text>
             )}
-            <Pressable style={styles.searchBtn} onPress={() => handleSubmit()}>
+            <Pressable
+              style={styles.searchBtn}
+              onPress={() => {
+                handleSubmit();
+              }}>
               <Text style={styles.btnText}>Find Route</Text>
             </Pressable>
           </View>
