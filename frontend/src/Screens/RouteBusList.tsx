@@ -22,8 +22,10 @@ const RouteBusList = ({route, navigation}: any) => {
   const handleTicketView = (bus: any) => {
     navigation.navigate(ROUTES.BUS_ROUTE_DETAIL, {
       data: bus,
+      busDetail: false,
     });
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>

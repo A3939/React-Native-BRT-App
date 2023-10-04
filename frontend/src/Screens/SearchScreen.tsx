@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: 20,
     marginTop: 10,
-    marginBottom: wp('60%'),
+    marginBottom: wp('50%'),
   },
 });

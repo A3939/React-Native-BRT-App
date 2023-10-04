@@ -73,11 +73,6 @@ const RecentSearches = ({navigation}: any) => {
                 </Text>
                 <Text style={styles.tag}>Via BRTS</Text>
               </View>
-              <View>
-                <TouchableOpacity style={styles.priceBtn}>
-                  <Text style={styles.price}>$ 15</Text>
-                </TouchableOpacity>
-              </View>
             </View>
           </TouchableOpacity>
         ))}

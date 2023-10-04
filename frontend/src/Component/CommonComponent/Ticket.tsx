@@ -15,9 +15,11 @@ const Ticket = ({busData}: any) => {
             {busData.start_station} - {busData.end_station}
           </Text>
         </View>
-        <View>
-          <Text style={styles.ticketPrice}>$ 15</Text>
-        </View>
+        {busData.ticketPrice !== undefined && (
+          <View>
+            <Text style={styles.ticketPrice}>₹ {busData?.ticketPrice}</Text>
+          </View>
+        )}
       </View>
       <View style={{alignItems: 'center'}}>
         <Text style={styles.cutLine}>- - - - - - - - - - - - - - - - - -</Text>

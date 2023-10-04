@@ -34,6 +34,7 @@ const FrequentlySearch = ({navigation, setIsLoader, isLoader}: any) => {
   const handleTicketView = (bus: any) => {
     navigation.navigate(ROUTES.BUS_ROUTE_DETAIL, {
       data: bus,
+      busDetail: true,
     });
   };
 

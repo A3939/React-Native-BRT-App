@@ -1,7 +1,8 @@
 import axios from 'axios';
-const baseURL = 'https://brts.onrender.com/api/BRT/';
-const adBaseURL = 'https://brts.onrender.com/api/';
-
+// const baseURL = 'https://brts.onrender.com/api/BRT/';
+// const adBaseURL = 'https://brts.onrender.com/api/';
+const baseURL = 'http://192.168.1.239:5001/api/BRT/';
+const adBaseURL = 'http://192.168.1.239:5001/api/';
 export const apiGetBusList = async () => {
   try {
     const response = await axios.get(baseURL);
@@ -36,11 +37,11 @@ export const apiGetBusStationList = async () => {
 };
 
 export const apiGetAdvertisements = async () => {
-    try {
-      const response = await axios.get(adBaseURL + 'advertisements');
-      return response.data;
-    } catch (error) {
-      console.log('error', error);
-      return null;
-    }
+  try {
+    const response = await axios.get(adBaseURL + 'advertisements');
+    return response.data;
+  } catch (error) {
+    console.log('error', error);
+    return null;
+  }
 };

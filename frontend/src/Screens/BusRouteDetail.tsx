@@ -11,9 +11,11 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {COLOR} from '../constants';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {Icons} from '../assets/Icons';
+import {convertInHourMin, minutesDiff} from '../Utils/TimeConversions';
 
 const BusRouteDetail = ({route, navigation}: any) => {
   const [busDetail, setBusDetail] = useState<any>(route.params.data);
+  const busDetailShow = route.params.busDetail;
 
   const Station = ({stationName, stationNumber}: any) => {
     return (
@@ -43,7 +45,11 @@ const BusRouteDetail = ({route, navigation}: any) => {
         <Image source={{uri: 'map'}} style={styles.mapBg} />
       </View>
       <ScrollView
-        contentContainerStyle={{backgroundColor: COLOR.white}}
+        contentContainerStyle={{
+          backgroundColor: COLOR.white,
+          flex: 1,
+          paddingTop: wp('5%'),
+        }}
         showsVerticalScrollIndicator={false}>
         <View style={styles.mainContainer}>
           <View style={styles.busDetail}>
@@ -53,31 +59,42 @@ const BusRouteDetail = ({route, navigation}: any) => {
                 {busDetail.start_station} - {busDetail.end_station}
               </Text>
             </View>
-            <View>
-              <Text style={styles.price}>$15</Text>
-            </View>
-          </View>
-          <View style={styles.busTime}>
-            <View style={styles.busArrive}>
-              <Text style={styles.bustArriveTime}>01:45 PM</Text>
-              <Text style={styles.busStation} numberOfLines={1}>
-                {busDetail.start_station}
-              </Text>
-            </View>
-            <View style={styles.timeContainer}>
-              <View style={styles.line}></View>
-              <View style={styles.timeDiff}>
-                <Text style={styles.time}>20 min</Text>
+            {!busDetailShow && (
+              <View>
+                <Text style={styles.price}>₹{busDetail.ticketPrice}</Text>
               </View>
-              <View style={styles.line}></View>
-            </View>
-            <View style={styles.busReach}>
-              <Text style={styles.bustReachTime}>01:45 PM</Text>
-              <Text style={styles.busStation} numberOfLines={1}>
-                {busDetail.end_station}
-              </Text>
-            </View>
+            )}
           </View>
+          {!busDetailShow && (
+            <View style={styles.busTime}>
+              <View style={styles.busArrive}>
+                <Text style={styles.bustArriveTime}>
+                  {convertInHourMin(busDetail.startTime)}
+                </Text>
+                <Text style={styles.busStation} numberOfLines={1}>
+                  {busDetail.start_station}
+                </Text>
+              </View>
+              <View style={styles.timeContainer}>
+                <View style={styles.line}></View>
+                <View style={styles.timeDiff}>
+                  <Text style={styles.time}>
+                    {minutesDiff(busDetail.startTime, busDetail.endTime)} min
+                  </Text>
+                </View>
+                <View style={styles.line}></View>
+              </View>
+              <View style={styles.busReach}>
+                <Text style={styles.bustReachTime}>
+                  {convertInHourMin(busDetail.endTime)}
+                </Text>
+                <Text style={styles.busStation} numberOfLines={1}>
+                  {busDetail.end_station}
+                </Text>
+              </View>
+            </View>
+          )}
+          <View style={styles.horizontalLine}></View>
           <View style={styles.stationsContainer}>
             {busDetail.route.map((station: any, index: number) => {
               return (
@@ -123,7 +140,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     justifyContent: 'center',
-    padding: wp('5%'),
     marginBottom: wp('30%'),
   },
   busNumber: {
@@ -140,6 +156,8 @@ const styles = StyleSheet.create({
   busDetail: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingHorizontal: wp('5%'),
+    paddingTop: wp('4%'),
   },
   price: {
     fontSize: wp('8%'),
@@ -149,7 +167,7 @@ const styles = StyleSheet.create({
   busTime: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: wp('4%'),
+    padding: wp('5%'),
   },
   busArrive: {
     height: wp('13%'),
@@ -203,7 +221,7 @@ const styles = StyleSheet.create({
     color: COLOR.primary,
   },
   stationsContainer: {
-    marginTop: wp('15%'),
+    marginTop: wp('10%'),
     paddingHorizontal: wp('8%'),
   },
   station: {
@@ -236,5 +254,11 @@ const styles = StyleSheet.create({
     height: wp('10%'),
     backgroundColor: COLOR.primary,
     flexDirection: 'row',
+  },
+  horizontalLine: {
+    width: wp('100%'),
+    height: wp('1.5%'),
+    backgroundColor: COLOR.grayLight,
+    marginTop: wp('5%'),
   },
 });
