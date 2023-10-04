@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Platform
 } from 'react-native';
 import React, {useState} from 'react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     justifyContent: 'center',
     marginBottom: wp('30%'),
+    paddingTop: Platform.OS === 'ios' ? 0 : wp('5%'),
   },
   busNumber: {
     fontSize: wp('7%'),
