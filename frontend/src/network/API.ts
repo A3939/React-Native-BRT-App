@@ -1,8 +1,8 @@
 import axios from 'axios';
-// const baseURL = 'https://brts.onrender.com/api/BRT/';
-// const adBaseURL = 'https://brts.onrender.com/api/';
-const baseURL = 'http://192.168.1.239:5001/api/BRT/';
-const adBaseURL = 'http://192.168.1.239:5001/api/';
+const baseURL = 'https://brts.onrender.com/api/BRT/';
+const adBaseURL = 'https://brts.onrender.com/api/';
+// const baseURL = 'http://192.168.1.239:5001/api/BRT/';
+// const adBaseURL = 'http://192.168.1.239:5001/api/';
 export const apiGetBusList = async () => {
   try {
     const response = await axios.get(baseURL);
