@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   route: {
     flexWrap: 'wrap',
     fontSize: wp('5%'),
-    width: wp('55%'),
+    width: wp('70%'),
     color: COLOR.primary,
     fontWeight: 'bold',
     marginBottom: 10,

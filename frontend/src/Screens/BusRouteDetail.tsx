@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  Platform
+  Platform,
 } from 'react-native';
 import React, {useState} from 'react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -48,8 +48,6 @@ const BusRouteDetail = ({route, navigation}: any) => {
       <ScrollView
         contentContainerStyle={{
           backgroundColor: COLOR.white,
-          flex: 1,
-          paddingTop: wp('5%'),
         }}
         showsVerticalScrollIndicator={false}>
         <View style={styles.mainContainer}>
