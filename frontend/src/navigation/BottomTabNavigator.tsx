@@ -7,6 +7,7 @@ import {COLOR, ROUTES} from '../constants';
 import SearchNavigator from './SearchNavigator';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import BottomTabBar from '../Component/CommonComponent/BottomTabBar';
+import BusMapScreen from '../Screens/BusMapScreen';
 
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
@@ -20,9 +21,10 @@ const BottomTabNavigator = () => {
         tabBarStyle: styles.tabBarStyle,
         tabBarActiveTintColor: COLOR.primary,
       })}
-      initialRouteName={ROUTES.HOME}>
+      initialRouteName={ROUTES.MAP_VIEW}>
       <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
       <Tab.Screen name={ROUTES.SEARCH_NAVIGATOR} component={SearchNavigator} />
+      <Tab.Screen name={ROUTES.MAP_VIEW} component={BusMapScreen} />
     </Tab.Navigator>
   );
 };

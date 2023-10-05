@@ -33,8 +33,7 @@ const SearchScreen = ({navigation}: any) => {
           />
         </View>
       </KeyboardAwareScrollView>
-      {/* <Loader visible={isLoader} /> */}
-      <BusLoaderModal isLoader={isLoader} />
+      <Loader visible={isLoader} />
     </SafeAreaView>
   );
 };

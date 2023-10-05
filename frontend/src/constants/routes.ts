@@ -7,4 +7,5 @@ export default {
   SPLASH: 'Splash',
   BOTTOM_HOME: 'Bottom_home',
   WEB_VIEW: 'Web_view',
+  MAP_VIEW: 'Map_view',
 };

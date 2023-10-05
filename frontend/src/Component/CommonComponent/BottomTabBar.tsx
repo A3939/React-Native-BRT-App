@@ -51,6 +51,8 @@ function BottomTabBar({state, descriptors, navigation}) {
           iconName = isFocused ? Icons.HOME : Icons.HOME;
         } else if (route.name === ROUTES.SEARCH_NAVIGATOR) {
           iconName = isFocused ? Icons.SEARCH : Icons.SEARCH;
+        } else {
+          iconName = Icons.BUS;
         }
 
         return (
@@ -88,15 +90,12 @@ const styles = StyleSheet.create({
   tabBarStyle: {
     borderTopWidth: 0,
     alignItems: 'center',
-    // borderRadius: 50,
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     height: Platform.OS === 'ios' ? wp('23%') : wp('18%'),
     backgroundColor: COLOR.white,
-    // marginHorizontal: wp('4%'),
     borderTopLeftRadius: wp('10%'),
     borderTopRightRadius: wp('10%'),
-    // marginBottom: Platform.OS === 'ios' ? wp('3%') : 0,
   },
   bottomIcon: {
     width: wp('6%'),
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
   },
   menuItem: {
     paddingVertical: Platform.OS === 'ios' ? wp('0%') : wp('3%'),
-    paddingHorizontal: Platform.OS === 'ios' ? wp('15%') : wp('18%'),
+    paddingHorizontal: Platform.OS === 'ios' ? wp('10%') : wp('10%'),
     backgroundColor: COLOR.primary,
     borderRadius: wp('10%'),
   },
