@@ -7,4 +7,6 @@ export const Icons = {
   IMG_LOAD: 'imgload',
   BUS_PIN: 'buspin',
   USER_PIN: 'userpin',
+  CURRENT_LOCATION: 'cuurentlocation',
+  GET_LOCATION: 'getlocation',
 };

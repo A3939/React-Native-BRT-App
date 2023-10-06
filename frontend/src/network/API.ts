@@ -8,7 +8,6 @@ export const apiGetBusList = async () => {
     const response = await axios.get(baseURL);
     return response.data;
   } catch (error) {
-    console.log('error', error);
     return null;
   }
 };
